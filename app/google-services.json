@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "201966085728",
+    "project_id": "futnow-a965c",
+    "storage_bucket": "futnow-a965c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201966085728:android:6b592fa5601ca2e8934505",
+        "android_client_info": {
+          "package_name": "com.example.futnow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201966085728-rmu8lo50rqmg15dlo4ghtjvrc75b30s5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYPnMg9qtdwHA4SZhvyePusEvxCvl09JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201966085728-rmu8lo50rqmg15dlo4ghtjvrc75b30s5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
