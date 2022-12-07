@@ -8,10 +8,12 @@
     >
 
     <LinearLayout
+        android:id="@+id/LayoutEachQuadra"
+        android:onClick="RedirecionarQuadra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints,OnClick">
 
         <LinearLayout
             android:layout_width="match_parent"

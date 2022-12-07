@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.futnow.model.Quadra;
@@ -20,8 +24,9 @@ public class FutnowHomepage extends AppCompatActivity {
     private List<Quadra> quadraList = new ArrayList<>();
     private CustomAdapterQuadras adapter;
     RecyclerView recyclerView;
+    LinearLayout linearLayout;
 
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +36,7 @@ public class FutnowHomepage extends AppCompatActivity {
 
         quadraList.add(quadra);
         recyclerView = findViewById(R.id.RecyclerViewQuadras);
+        linearLayout = findViewById(R.id.LayoutEachQuadra);
 
         System.out.println("Quadras: "+ quadraList);
 
@@ -56,9 +62,15 @@ public class FutnowHomepage extends AppCompatActivity {
             }
         });
 
+
+
 //        recyclerView = findViewById(R.id.RecyclerViewQuadras);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setHasFixedSize(true);
+    }
+
+    public void RedirecionarQuadra(View view) {
+        startActivity(new Intent(FutnowHomepage.this, QuadraPrincipalActivity.class));
     }
 
 
