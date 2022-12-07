@@ -16,27 +16,35 @@ import com.example.futnow.model.Usuario;
  */
 public class ExampleUnitTest {
 
-    private Usuario usuario;
-    private Quadra quadra;
-    private Comentario comentario;
+     Usuario usuario;
+     Quadra quadra;
+     Comentario comentario;
 
     @Before
     public void CreateClasss() {
         usuario = new Usuario(
-            "wil",
-            "wilsteins@gmail.com",
-            "123456",
-            "12345678900"
+                "wil",
+                "wilhelmsteins@gmail.com",
+                "123456",
+                "00987654321"
         );
 
+
+
+    }
+    @Before
+    public void quadra() {
         quadra = new Quadra(
-            "titulo da quadra",
-            "descricao da quadra"
+                "titulo da quadra",
+                "descricao"
         );
 
+    }
+    @Before
+    public void comentario(){
         comentario = new Comentario(
             "titulo da comentario",
-            "descricao da comentario"
+            "descricao"
         );
     }
 
@@ -60,8 +68,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testSenhaUsuario(){
-        String senha = "654321";
-        usuario.setSenha(senha);
+        String senha = "123456";
         assertEquals("Verifica se o metodo setSenha e getSenha está funcionando",
                 senha, usuario.getSenha());
     }
@@ -69,7 +76,6 @@ public class ExampleUnitTest {
     @Test
     public void testEmailUsuario(){
         String email = "wilhelmsteins@gmail.com";
-        usuario.setEmail(email);
         assertEquals("Verifica se o metodo setEmail e getEmail está funcionando",
                 email, usuario.getEmail());
     }
@@ -77,7 +83,6 @@ public class ExampleUnitTest {
     @Test
     public void testCpfUsuario() {
         String cpf = "00987654321";
-        usuario.setCPF(cpf);
         assertEquals("Verifica se o metodo setCPF e getCPF está funcionando",
                 cpf, usuario.getCPF());
     }
@@ -93,15 +98,14 @@ public class ExampleUnitTest {
     @Test
     public void testDescricaoQuadra() {
         String descricao = "descricao";
-        quadra.setDescricao(descricao);
         assertEquals("Verifica se o metodo setDescricao e getDescricao está funcionando",
                 descricao, quadra.getDescricao());
     }
 
     @Test
     public void testTitleComentario() {
-        String title = "titulo";
-        comentario.setTitle(title);
+        String title = "titulo da comentario";
+
         assertEquals("Verifica se o metodo setTitle e getTitle está funcionando",
                 title, comentario.getTitle());
     }

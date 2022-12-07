@@ -67,4 +67,8 @@ public class LoginActivity extends AppCompatActivity {
 
         });
     }
+
+    public void RedirecionarCadastro(View view) {
+        startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
+    }
 }

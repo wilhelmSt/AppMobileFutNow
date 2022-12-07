@@ -38,14 +38,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ButtonPerfilHomePage"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/profile_icon"
         android:backgroundTintMode="@color/button_perfil"
+        android:onClick="RedirecionarCadastroQuadra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UsingOnClickInXml" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="340dp"

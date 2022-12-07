@@ -73,5 +73,7 @@ public class FutnowHomepage extends AppCompatActivity {
         startActivity(new Intent(FutnowHomepage.this, QuadraPrincipalActivity.class));
     }
 
-
+    public void RedirecionarCadastroQuadra(View view) {
+        startActivity(new Intent(FutnowHomepage.this, CadastrarQuadraActivity.class));
+    }
 }

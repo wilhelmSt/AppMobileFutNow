@@ -147,6 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="656dp"
         android:background="@drawable/buttoncadastro_background"
+        android:onClick="RedirecionarAgendaQuadra"
         android:text="ver agenda"
         android:textAllCaps="false"
         android:textColor="@color/white"
