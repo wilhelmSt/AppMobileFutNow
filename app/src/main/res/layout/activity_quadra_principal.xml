@@ -48,6 +48,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaPrincipalTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="256dp"
@@ -59,6 +60,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaPrincipalValor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="312dp"
@@ -71,6 +73,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaPrincipalTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="312dp"
@@ -83,6 +86,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaPrincipalEndereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="404dp"
@@ -95,6 +99,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaPrincipalCidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="368dp"
@@ -107,6 +112,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ButtonMapa"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="388dp"
@@ -117,6 +123,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaPrincipalDescricao"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="456dp"
@@ -129,20 +136,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ButtonComentarios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="608dp"
         android:background="@color/background"
         android:text="ver comentários"
         android:textAllCaps="false"
-        android:textSize="18dp"
         android:textColor="@color/fut_green"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ButtonAgenda"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="656dp"

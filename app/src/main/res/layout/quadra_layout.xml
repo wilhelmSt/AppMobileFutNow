@@ -9,7 +9,6 @@
 
     <LinearLayout
         android:id="@+id/LayoutEachQuadra"
-        android:onClick="RedirecionarQuadra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -24,13 +23,11 @@
                 android:id="@+id/textViewTitleQuadra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:paddingTop="5dp"
                 android:paddingLeft="5dp"
-                android:textColor="@color/white"
+                android:paddingTop="5dp"
                 android:text="TextView"
-                />
-
+                android:textColor="@color/white"
+                android:textSize="22dp" />
 
 
         </LinearLayout>
@@ -44,12 +41,11 @@
                 android:id="@+id/textViewDescricaoQuadra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="16dp"
-                android:paddingTop="5dp"
                 android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="TextView"
                 android:textColor="@color/white"
-                />
+                android:textSize="16dp" />
         </LinearLayout>
 
     </LinearLayout>

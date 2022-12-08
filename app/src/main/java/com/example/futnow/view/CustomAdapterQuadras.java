@@ -1,7 +1,8 @@
 package com.example.futnow.view;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.TextView;
-import java.util.ArrayList;
+import java.util.List;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -11,7 +12,13 @@ import com.example.futnow.model.Quadra;
 
 public class CustomAdapterQuadras extends RecyclerView.Adapter<CustomAdapterQuadras.ViewHolder> {
 
-    private ArrayList<Quadra> localDataSet;
+    private List<Quadra> localDataSet;
+    private Onclick onclick;
+
+    public CustomAdapterQuadras( List<Quadra> dataSet, Onclick onclick ) {
+        this.localDataSet = dataSet;
+        this.onclick = onclick;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewTitle;
@@ -25,10 +32,6 @@ public class CustomAdapterQuadras extends RecyclerView.Adapter<CustomAdapterQuad
 
         }
 
-    }
-
-    public CustomAdapterQuadras( ArrayList<Quadra> dataSet) {
-        localDataSet = dataSet;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -46,11 +49,20 @@ public class CustomAdapterQuadras extends RecyclerView.Adapter<CustomAdapterQuad
         viewHolder.textViewTitle.setText(quadra.getTitle());
         viewHolder.textViewDescricao.setText(quadra.getDescricao());
 
+        viewHolder.itemView.setOnClickListener(view -> {
+            onclick.onClickListener(quadra);
+        });
+
+    }
+
+    public interface Onclick {
+        public void onClickListener(Quadra quadra);
     }
 
     @Override
     public int getItemCount() {
         return localDataSet.size();
     }
+
 }
 

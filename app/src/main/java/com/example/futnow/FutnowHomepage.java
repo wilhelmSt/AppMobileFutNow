@@ -5,43 +5,42 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.futnow.model.Quadra;
 import com.example.futnow.view.CustomAdapterQuadras;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class FutnowHomepage extends AppCompatActivity {
+public class FutnowHomepage extends AppCompatActivity implements CustomAdapterQuadras.Onclick {
 
-    private List<Quadra> quadraList = new ArrayList<>();
+    private Quadra quadra;
+    private List<Quadra> quadrasList = new ArrayList<>();
     private CustomAdapterQuadras adapter;
     RecyclerView recyclerView;
-    LinearLayout linearLayout;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_futnow_homepage);
 
-        Quadra quadra = new Quadra("Titulo", "Descricao");
-
-        quadraList.add(quadra);
         recyclerView = findViewById(R.id.RecyclerViewQuadras);
-        linearLayout = findViewById(R.id.LayoutEachQuadra);
 
-        System.out.println("Quadras: "+ quadraList);
-
-        adapter = new CustomAdapterQuadras((ArrayList<Quadra>) quadraList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        adapter = new CustomAdapterQuadras(quadrasList, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
         recyclerView.setAdapter(adapter);
@@ -62,18 +61,50 @@ public class FutnowHomepage extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperaQuadras();
 
-
-//        recyclerView = findViewById(R.id.RecyclerViewQuadras);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setHasFixedSize(true);
     }
 
-    public void RedirecionarQuadra(View view) {
-        startActivity(new Intent(FutnowHomepage.this, QuadraPrincipalActivity.class));
+    private void recuperaQuadras() {
+        DatabaseReference databaseReference = FirebaseHelper.getDatabaseReference()
+                .child("quadras")
+                .child(FirebaseHelper.getIdFirebase());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                quadrasList.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        quadra = snap.getValue(Quadra.class);
+                        quadrasList.add(quadra);
+                    }
+                }
+                Collections.reverse(quadrasList);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     public void RedirecionarCadastroQuadra(View view) {
         startActivity(new Intent(FutnowHomepage.this, CadastrarQuadraActivity.class));
     }
+
+    @Override
+    public void onClickListener(Quadra quadra) {
+        Intent intent = new Intent(this, QuadraPrincipalActivity.class);
+        intent.putExtra("quadra", quadra.getId());
+//        intent.putExtra("quadra", quadra);
+        startActivity(intent);
+    }
+
 }

@@ -1,8 +1,13 @@
 package com.example.futnow.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.futnow.FirebaseHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+
+import java.io.Serializable;
 
 public class Quadra {
     String id;
@@ -14,7 +19,7 @@ public class Quadra {
     String valor;
     String idUser;
 
-    private FirebaseAuth auth = FirebaseAuth.getInstance();
+//    private FirebaseAuth auth = FirebaseAuth.getInstance();
 
     public Quadra() {
         DatabaseReference reference = FirebaseHelper.getDatabaseReference();
@@ -47,7 +52,7 @@ public class Quadra {
     }
 
     public void setDescricao(String descricao) {
-        this.title = descricao;
+        this.descricao = descricao;
     }
 
     public String getEndereco() {

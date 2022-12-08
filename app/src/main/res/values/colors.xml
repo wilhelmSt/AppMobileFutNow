@@ -9,6 +9,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lightgray">#FFC0C0C0</color>
+    <color name="darkgray">#FF4C4C4C</color>
     <color name="background">#25242B</color>
     <color name="button_login">#35343B</color>
     <color name="button_perfil">#D9D9D9</color>
