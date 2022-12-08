@@ -48,6 +48,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ButtonGetLocation"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="192dp"

@@ -3,7 +3,9 @@ package com.example.futnow;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,6 +41,16 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
 
         recuperarId();
 
+        buttonMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuadraPrincipalActivity.this, MapsActivity.class);
+                intent.putExtra("lat", quadra.getLatitude());
+                intent.putExtra("log", quadra.getLongitude());
+
+                startActivity(intent);
+            }
+        });
     }
 
     private void Constructor() {

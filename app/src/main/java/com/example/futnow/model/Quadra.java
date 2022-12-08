@@ -16,6 +16,8 @@ public class Quadra {
     String endereco;
     String cidade;
     String tipoQuadra;
+    String Latitude;
+    String Longitude;
     String valor;
     String idUser;
 
@@ -29,6 +31,22 @@ public class Quadra {
     public Quadra(String title, String descricao) {
         this.title = title;
         this.descricao = descricao;
+    }
+
+    public String getLatitude() {
+        return Latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        Latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return Longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        Longitude = longitude;
     }
 
     public String getId() {

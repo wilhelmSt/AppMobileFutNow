@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuadraComentariosActivity"
     android:background="@color/background"
-    >
+    android:onClick="realizarComentario"
+    tools:context=".QuadraComentariosActivity">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/fut_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/fut_green"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -40,14 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginTop="60dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/white"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/EditTextTituloComentario"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="268dp"
@@ -55,6 +54,7 @@
         android:hint="Título do comentário"
         android:paddingLeft="10dp"
         android:textColor="@color/black"
+        android:textColorHint="@color/darkgray"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
@@ -62,15 +62,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/EditTextDescricaoComentario"
         android:layout_width="380dp"
         android:layout_height="250dp"
         android:layout_marginTop="340dp"
         android:background="@drawable/inputsearch_background"
-        android:hint="Descrição do comentário"
         android:gravity="start"
+        android:hint="Descrição do comentário"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:textColor="@color/black"
+        android:textColorHint="@color/darkgray"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
@@ -78,6 +80,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/TextViewButtonComentar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="676dp"

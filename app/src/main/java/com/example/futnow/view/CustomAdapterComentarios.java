@@ -2,16 +2,23 @@ package com.example.futnow.view;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 
 import com.example.futnow.R;
 import com.example.futnow.model.Comentario;
+import com.example.futnow.model.Quadra;
 
 public class CustomAdapterComentarios extends RecyclerView.Adapter<CustomAdapterComentarios.ViewHolder> {
 
-    private ArrayList<Comentario> localDataSet;
+    private List<Comentario> localDataSet;
+
+    public CustomAdapterComentarios( List<Comentario> dataSet) {
+        localDataSet = dataSet;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewTitle;
@@ -25,10 +32,6 @@ public class CustomAdapterComentarios extends RecyclerView.Adapter<CustomAdapter
 
         }
 
-    }
-
-    public CustomAdapterComentarios( ArrayList<Comentario> dataSet) {
-        localDataSet = dataSet;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -47,6 +50,7 @@ public class CustomAdapterComentarios extends RecyclerView.Adapter<CustomAdapter
         viewHolder.textViewDescricao.setText( comentario.toString() );
 
     }
+
 
     @Override
     public int getItemCount() {
