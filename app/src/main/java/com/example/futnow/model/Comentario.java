@@ -7,7 +7,7 @@ public class Comentario {
     String id;
     String title;
     String descricao;
-    String quadraId;
+    String idQuadra;
 
     public Comentario() {
         DatabaseReference reference = FirebaseHelper.getDatabaseReference();
@@ -40,7 +40,15 @@ public class Comentario {
     }
 
     public void setDescricao(String descricao) {
-        this.title = descricao;
+        this.descricao = descricao;
+    }
+
+    public String getIdQuadra() {
+        return idQuadra;
+    }
+
+    public void setIdQuadra(String idQuadra) {
+        this.idQuadra = idQuadra;
     }
 
     @Override

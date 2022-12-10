@@ -48,6 +48,7 @@
         />
 
     <TextView
+        android:id="@+id/TextViewButtonFazerComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="676dp"
@@ -60,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewComentarios"
+        android:id="@+id/recyclerViewComentarios"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="256dp"

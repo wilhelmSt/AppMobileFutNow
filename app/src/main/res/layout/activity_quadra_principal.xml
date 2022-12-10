@@ -136,7 +136,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ButtonComentarios"
+        android:id="@+id/ButtonVerComentarios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="608dp"
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ButtonAgenda"
+        android:id="@+id/ButtonVerAgenda"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="656dp"

@@ -3,35 +3,47 @@ package com.example.futnow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.example.futnow.model.Comentario;
 import com.example.futnow.model.Quadra;
 import com.example.futnow.view.CustomAdapterComentarios;
-import com.example.futnow.view.CustomAdapterQuadras;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class QuadraComentariosActivity extends AppCompatActivity {
 
-    List<Comentario> comentarioList = new ArrayList<>();
-    CustomAdapterComentarios adapter;
+    private Comentario comentario;
+    private List<Comentario> comentarioList = new ArrayList<>();
+    private CustomAdapterComentarios adapter;
     RecyclerView recyclerView;
+    TextView fazerComentario;
+    String idQuadra = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quadra_comentarios);
 
-        recyclerView = findViewById(R.id.recycleViewComentarios);
+        Bundle bundle = getIntent().getExtras();
+
+        fazerComentario = findViewById(R.id.TextViewButtonFazerComentario);
+        recyclerView = findViewById(R.id.recyclerViewComentarios);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
         adapter = new CustomAdapterComentarios(comentarioList);
@@ -54,5 +66,51 @@ public class QuadraComentariosActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+        fazerComentario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (bundle != null) {
+                    idQuadra = bundle.getString("idQuadra");
+                }
+                Intent intent = new Intent(QuadraComentariosActivity.this, QuadraComentarActivity.class);
+                intent.putExtra("idQuadra", idQuadra);
+                startActivity(intent);
+            }
+        });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperaComentarios();
+
+    }
+
+    private void recuperaComentarios() {
+        DatabaseReference databaseReference = FirebaseHelper.getDatabaseReference()
+                .child("comentarios")
+                .child(idQuadra);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                comentarioList.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        comentario = snap.getValue(Comentario.class);
+                        comentarioList.add(comentario);
+                    }
+                }
+                Collections.reverse(comentarioList);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }

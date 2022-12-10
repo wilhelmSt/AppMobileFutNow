@@ -48,6 +48,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaAgendaTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="256dp"
@@ -59,9 +60,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/TextViewArenaAgendaData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="316dp"
         android:text="Setembro, 21"
         android:textColor="@color/fut_green"
         android:textSize="18dp"
@@ -69,30 +71,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="436dp"
-        android:background="@drawable/buttoncancelar_background"
-        android:text="18:00 PM"
-        android:textColor="@color/white"
-        android:textSize="22dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewHorarios"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_marginTop="360dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@drawable/buttoncadastro_background"
-        android:layout_marginTop="372dp"
-        android:text="17:00 PM"
-        android:textColor="@color/white"
-        android:textSize="22dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

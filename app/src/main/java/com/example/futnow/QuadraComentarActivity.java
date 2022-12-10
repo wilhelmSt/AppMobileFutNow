@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.futnow.model.Comentario;
 import com.example.futnow.model.Quadra;
@@ -22,11 +23,17 @@ public class QuadraComentarActivity extends AppCompatActivity {
     EditText descricao;
     TextView buttonComentar;
     Comentario comentario;
+    String idQuadra = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quadra_comentar);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            idQuadra = bundle.getString("idQuadra");
+        }
 
         titulo = findViewById(R.id.EditTextTituloComentario);
         descricao = findViewById(R.id.EditTextDescricaoComentario);
@@ -35,7 +42,12 @@ public class QuadraComentarActivity extends AppCompatActivity {
         buttonComentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                realizarComentario();
+                if(validaDados()) {
+                    realizarComentario();
+                } else {
+                    Toast.makeText(QuadraComentarActivity.this, "Preencha os campos!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -44,13 +56,13 @@ public class QuadraComentarActivity extends AppCompatActivity {
 
     public void realizarComentario() {
         DatabaseReference reference = FirebaseHelper.getDatabaseReference()
-                .child("usuarios")
-                .child(FirebaseHelper.getIdFirebase());
+                .child("comentarios")
+                .child(idQuadra)
+                .child(comentario.getId());
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-//                validaDados();
-
+                reference.setValue(comentario);
             }
 
             @Override
@@ -59,17 +71,14 @@ public class QuadraComentarActivity extends AppCompatActivity {
         });
     }
 
-//    private void validaDados() {
-//        if (comentario == null) comentario = new Comentario();
-//        comentario.setIdUser(FirebaseHelper.getIdFirebase());
-//
-//        comentario.setTitle(nome.getText().toString());
-//        comentario.setEndereco(endereco.getText().toString());
-//        comentario.setCidade(cidade.getText().toString());
-//        comentario.setTipoQuadra(tipo.getText().toString());
-//        comentario.setValor(valor.getText().toString());
-//        comentario.setDescricao(descricao.getText().toString());
-//
-//        comentario.salvar();
-//    }
+    private boolean validaDados() {
+        if (comentario == null) comentario = new Comentario();
+
+        comentario.setTitle(titulo.getText().toString());
+        comentario.setDescricao(descricao.getText().toString());
+        comentario.setIdQuadra(idQuadra);
+
+        if (comentario != null) return true;
+        return false;
+    }
 }

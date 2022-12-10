@@ -46,8 +46,8 @@ public class CustomAdapterComentarios extends RecyclerView.Adapter<CustomAdapter
 
         Comentario comentario = localDataSet.get( position );
 
-        viewHolder.textViewTitle.setText( comentario.toString() );
-        viewHolder.textViewDescricao.setText( comentario.toString() );
+        viewHolder.textViewTitle.setText(comentario.getTitle());
+        viewHolder.textViewDescricao.setText(comentario.getDescricao());
 
     }
 

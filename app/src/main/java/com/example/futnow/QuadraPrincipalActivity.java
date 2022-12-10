@@ -26,8 +26,8 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
     TextView arenaDescricao;
     TextView arenaCidade;
     TextView arenaEndereco;
-    Button buttonComentarios;
-    Button buttonAgenda;
+    Button buttonVerComentarios;
+    Button buttonVerAgenda;
     Button buttonMapa;
 
     Quadra quadra;
@@ -51,6 +51,25 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonVerAgenda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuadraPrincipalActivity.this, QuadraAgendaActivity.class);
+                intent.putExtra("idQuadra", quadra.getId());
+                intent.putExtra("title", quadra.getTitle());
+                startActivity(intent);
+            }
+        });
+
+        buttonVerComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuadraPrincipalActivity.this, QuadraComentariosActivity.class);
+                intent.putExtra("idQuadra", quadra.getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void Constructor() {
@@ -60,8 +79,8 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
         arenaTipo = findViewById(R.id.TextViewArenaPrincipalTipo);
         arenaDescricao = findViewById(R.id.TextViewArenaPrincipalDescricao);
         arenaCidade = findViewById(R.id.TextViewArenaPrincipalCidade);
-        buttonComentarios = findViewById(R.id.ButtonComentarios);
-        buttonAgenda = findViewById(R.id.ButtonAgenda);
+        buttonVerComentarios = findViewById(R.id.ButtonVerComentarios);
+        buttonVerAgenda = findViewById(R.id.ButtonVerAgenda);
         buttonMapa = findViewById(R.id.ButtonMapa);
     }
 
@@ -71,7 +90,7 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
         arenaDescricao.setText(quadra.getDescricao());
         arenaEndereco.setText(quadra.getEndereco());
         arenaTipo.setText(quadra.getTipoQuadra());
-        arenaValor.setText(quadra.getValor());
+        arenaValor.setText("R$ " + quadra.getValor());
     }
 
     public void recuperarId() {
