@@ -4,35 +4,52 @@ import com.example.futnow.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Horario {
 
-    String id;
-    String idQuadra;
-    ArrayList<String> horarios = new ArrayList<>();
+    String id, idQuadra;
+    String title, descricao;
+    HashMap<String, Boolean> horarios = new HashMap<String, Boolean>();
 
     public Horario() {
-        horarios.add("07:00 AM");
-        horarios.add("08:00 AM");
-        horarios.add("09:00 AM");
-        horarios.add("10:00 AM");
-        horarios.add("11:00 AM");
-        horarios.add("12:00 PM");
-        horarios.add("13:00 PM");
-        horarios.add("14:00 PM");
-        horarios.add("15:00 PM");
-        horarios.add("16:00 PM");
-        horarios.add("17:00 PM");
-        horarios.add("18:00 PM");
-        horarios.add("19:00 PM");
-        horarios.add("20:00 PM");
-        horarios.add("21:00 PM");
-        horarios.add("22:00 PM");
+        horarios.put("07:00 AM", false);
+        horarios.put("08:00 AM", false);
+        horarios.put("09:00 AM", false);
+        horarios.put("10:00 AM", false);
+        horarios.put("11:00 AM", false);
+        horarios.put("12:00 PM", false);
+        horarios.put("13:00 PM", false);
+        horarios.put("14:00 PM", false);
+        horarios.put("15:00 PM", false);
+        horarios.put("16:00 PM", false);
+        horarios.put("17:00 PM", false);
+        horarios.put("18:00 PM", false);
+        horarios.put("19:00 PM", false);
+        horarios.put("20:00 PM", false);
+        horarios.put("21:00 PM", false);
+        horarios.put("22:00 PM", false);
 
 
         DatabaseReference reference = FirebaseHelper.getDatabaseReference();
         this.setId(reference.push().getKey());
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getId() {
@@ -43,7 +60,7 @@ public class Horario {
         this.id = id;
     }
 
-    public ArrayList<String> getHorarios() {
+    public HashMap<String, Boolean> getHorarios() {
         return horarios;
     }
 

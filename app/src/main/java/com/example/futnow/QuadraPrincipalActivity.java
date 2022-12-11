@@ -100,8 +100,6 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
             id = bundle.getString("quadra");
         }
 
-        System.out.println("ID" + id);
-
         DatabaseReference databaseReference = FirebaseHelper.getDatabaseReference()
                 .child("quadras")
                 .child(FirebaseHelper.getIdFirebase())
@@ -110,7 +108,6 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 quadra = snapshot.getValue(Quadra.class);
-                System.out.println("Quadra: " + quadra);
                 configDados(quadra);
             }
 
