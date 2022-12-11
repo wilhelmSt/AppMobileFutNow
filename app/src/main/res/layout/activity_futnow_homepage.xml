@@ -41,7 +41,7 @@
         android:id="@+id/ButtonPerfilHomePage"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/profile_icon"
+        android:background="@drawable/ic_launcher"
         android:backgroundTintMode="@color/button_perfil"
         android:onClick="RedirecionarCadastroQuadra"
         app:layout_constraintEnd_toEndOf="parent"
