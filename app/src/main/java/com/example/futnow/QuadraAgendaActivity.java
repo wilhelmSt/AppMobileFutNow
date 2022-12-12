@@ -28,17 +28,19 @@ import java.util.List;
 
 public class QuadraAgendaActivity extends AppCompatActivity {
 
-    TextView dataAgenda, titleAgenda;
-    RecyclerView recyclerView;
     Calendar calendar;
     int dayWeek;
     int dayMonth;
     HashMap<Integer, String> dias = new HashMap<Integer, String>();
+
+    TextView dataAgenda, titleAgenda;
     String title = null, idQuadra = null;
-    Bundle bundle = getIntent().getExtras();
-    List<Horario> horarios = new ArrayList<>();
-    Horario horario;
-    CustomAdapterHorarios adapter;
+    Bundle bundle;
+
+    private Horario horario;
+    private List<Horario> horarios = new ArrayList<>();
+    private CustomAdapterHorarios adapter;
+    RecyclerView recyclerView;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,6 +49,7 @@ public class QuadraAgendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quadra_agenda);
 
         Constructor();
+        RecuperarDados();
 
         recyclerView = findViewById(R.id.recyclerViewComentarios);
 
@@ -71,9 +74,6 @@ public class QuadraAgendaActivity extends AppCompatActivity {
 
             }
         });
-
-
-        RecuperarDados();
     }
 
     private void Constructor() {
@@ -92,6 +92,11 @@ public class QuadraAgendaActivity extends AppCompatActivity {
         calendar = Calendar.getInstance();
         dayWeek = calendar.get(Calendar.DAY_OF_WEEK);
         dayMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        if (bundle != null) {
+            bundle = getIntent().getExtras();
+            System.out.println(bundle);
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -108,6 +113,7 @@ public class QuadraAgendaActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        System.out.println("idQuadra: " + idQuadra);
         recuperaHorarios();
     }
 

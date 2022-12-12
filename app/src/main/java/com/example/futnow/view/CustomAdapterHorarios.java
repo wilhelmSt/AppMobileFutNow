@@ -32,11 +32,11 @@ public class CustomAdapterHorarios extends RecyclerView.Adapter<CustomAdapterHor
 
     }
 
-    public CustomAdapterHorarios.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.horarios_layout, viewGroup, false);
 
-        return new CustomAdapterHorarios.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class CustomAdapterHorarios extends RecyclerView.Adapter<CustomAdapterHor
 
         Horario horario = localDataSet.get( position );
 
-//        viewHolder.buttonText.setText();
+        viewHolder.buttonText.setText("Mudou");
 
 
     }

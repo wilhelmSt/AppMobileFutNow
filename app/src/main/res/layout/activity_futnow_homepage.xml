@@ -20,13 +20,13 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/fut_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/fut_green"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
         android:id="@+id/ButtonPerfilHomePage"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/ic_launcher"
+        android:background="@drawable/logout"
         android:backgroundTintMode="@color/button_perfil"
         android:onClick="RedirecionarCadastroQuadra"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,28 +51,18 @@
         tools:ignore="UsingOnClickInXml" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="340dp"
+        android:layout_width="380dp"
         android:layout_height="50dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginRight="20dp"
         android:background="@drawable/inputsearch_background"
         android:hint="Pesquisar"
         android:paddingLeft="10dp"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/RecyclerViewQuadras"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.082" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/filterbutton_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
