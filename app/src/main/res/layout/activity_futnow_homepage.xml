@@ -38,12 +38,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ButtonPerfilHomePage"
+        android:id="@+id/ButtonLogout"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/logout"
         android:backgroundTintMode="@color/button_perfil"
-        android:onClick="RedirecionarCadastroQuadra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +50,7 @@
         tools:ignore="UsingOnClickInXml" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/appCompatEditText"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:background="@drawable/inputsearch_background"
@@ -63,6 +63,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
         app:layout_constraintVertical_bias="0.082" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@drawable/plusbutton_icon"
+        android:id="@+id/ButtonIrCadrastarQuadra"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/RecyclerViewQuadras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.976" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import java.util.List;
 import com.example.futnow.model.Comentario;
 import com.example.futnow.model.Quadra;
 import com.example.futnow.view.CustomAdapterComentarios;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,9 @@ public class QuadraComentariosActivity extends AppCompatActivity {
     TextView fazerComentario;
     String idQuadra = "";
 
+    Button buttonLogout;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,7 @@ public class QuadraComentariosActivity extends AppCompatActivity {
 
         fazerComentario = findViewById(R.id.TextViewButtonFazerComentario);
         recyclerView = findViewById(R.id.recyclerViewComentarios);
+        buttonLogout = findViewById(R.id.ButtonLogout);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
         adapter = new CustomAdapterComentarios(comentarioList);
@@ -67,8 +73,6 @@ public class QuadraComentariosActivity extends AppCompatActivity {
             }
         });
 
-
-
         fazerComentario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +81,15 @@ public class QuadraComentariosActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(QuadraComentariosActivity.this, QuadraComentarActivity.class);
                 intent.putExtra("idQuadra", idQuadra);
+                startActivity(intent);
+            }
+        });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent intent = new Intent(QuadraComentariosActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,6 +1,7 @@
 package com.example.futnow;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -48,6 +49,9 @@ public class CadastrarQuadraActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
 
+    Button buttonLogout;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,8 @@ public class CadastrarQuadraActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 recuperaDadosUsuario();
+                Intent intent = new Intent(CadastrarQuadraActivity.this, FutnowHomepage.class);
+                startActivity(intent);
             }
         });
 
@@ -70,6 +76,15 @@ public class CadastrarQuadraActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getLocation();
+            }
+        });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent intent = new Intent(CadastrarQuadraActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -82,7 +97,6 @@ public class CadastrarQuadraActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 validaDados();
-
             }
 
             @Override
@@ -103,6 +117,7 @@ public class CadastrarQuadraActivity extends AppCompatActivity {
         quadra.setDescricao(descricao.getText().toString());
         quadra.setLatitude(lat);
         quadra.setLongitude(log);
+        quadra.setHorario();
 
         quadra.salvar();
     }
@@ -116,6 +131,7 @@ public class CadastrarQuadraActivity extends AppCompatActivity {
         valor = findViewById(R.id.EditTextCadastrarQuadraValor);
         descricao = findViewById(R.id.EditTextCadastrarQuadraDescricao);
         buttonMap = findViewById(R.id.ButtonGetLocation);
+        buttonLogout = findViewById(R.id.ButtonLogout);
     }
 
     private void getLocation() {

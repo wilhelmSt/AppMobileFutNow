@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.futnow.model.Quadra;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +32,9 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
     Button buttonMapa;
 
     Quadra quadra;
+
+    Button buttonLogout;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,15 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent intent = new Intent(QuadraPrincipalActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void Constructor() {
@@ -82,6 +95,7 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
         buttonVerComentarios = findViewById(R.id.ButtonVerComentarios);
         buttonVerAgenda = findViewById(R.id.ButtonVerAgenda);
         buttonMapa = findViewById(R.id.ButtonMapa);
+        buttonLogout = findViewById(R.id.ButtonLogout);
     }
 
     public void configDados(Quadra quadra) {

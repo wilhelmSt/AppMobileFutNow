@@ -1,7 +1,9 @@
 package com.example.futnow;
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.futnow.model.Comentario;
 import com.example.futnow.model.Quadra;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +27,9 @@ public class QuadraComentarActivity extends AppCompatActivity {
     TextView buttonComentar;
     Comentario comentario;
     String idQuadra = "";
+
+    Button buttonLogout;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class QuadraComentarActivity extends AppCompatActivity {
         titulo = findViewById(R.id.EditTextTituloComentario);
         descricao = findViewById(R.id.EditTextDescricaoComentario);
         buttonComentar = findViewById(R.id.TextViewButtonComentar);
+        buttonLogout = findViewById(R.id.ButtonLogout);
 
         buttonComentar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +55,15 @@ public class QuadraComentarActivity extends AppCompatActivity {
                     Toast.makeText(QuadraComentarActivity.this, "Preencha os campos!", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent intent = new Intent(QuadraComentarActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -31,9 +31,6 @@ public class Horario {
         horarios.put("21:00 PM", false);
         horarios.put("22:00 PM", false);
 
-
-        DatabaseReference reference = FirebaseHelper.getDatabaseReference();
-        this.setId(reference.push().getKey());
     }
 
     public String getTitle() {

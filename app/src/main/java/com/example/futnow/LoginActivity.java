@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView buttonIrCadastro1;
     TextView buttonIrCadastro2;
     Button loginButton;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -46,19 +47,21 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference();
-        userReference.child("usuarios").child(FirebaseHelper.getAuth().getCurrentUser().getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Intent intent = new Intent(LoginActivity.this, FutnowHomepage.class);
-                        startActivity(intent);
-                    }
+        if(auth.getUid() != null) {
+            userReference.child("usuarios").child(FirebaseHelper.getAuth().getCurrentUser().getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Intent intent = new Intent(LoginActivity.this, FutnowHomepage.class);
+                            startActivity(intent);
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+        }
     }
 
     public void validaDados(View view) {

@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ import com.example.futnow.model.Horario;
 import com.example.futnow.model.Quadra;
 import com.example.futnow.view.CustomAdapterHorarios;
 import com.example.futnow.view.CustomAdapterQuadras;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,16 +46,19 @@ public class QuadraAgendaActivity extends AppCompatActivity {
     private CustomAdapterHorarios adapter;
     RecyclerView recyclerView;
 
-    @SuppressLint("MissingInflatedId")
+    Button buttonLogout;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quadra_agenda);
 
+        bundle = getIntent().getExtras();
         Constructor();
         RecuperarDados();
 
-        recyclerView = findViewById(R.id.recyclerViewComentarios);
+        recyclerView = findViewById(R.id.RecyclerViewHorarios);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
         adapter = new CustomAdapterHorarios(horarios);
@@ -74,6 +81,15 @@ public class QuadraAgendaActivity extends AppCompatActivity {
 
             }
         });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent intent = new Intent(QuadraAgendaActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void Constructor() {
@@ -88,6 +104,7 @@ public class QuadraAgendaActivity extends AppCompatActivity {
         dataAgenda = findViewById(R.id.TextViewArenaAgendaData);
         titleAgenda = findViewById(R.id.TextViewArenaAgendaTitle);
         recyclerView = findViewById(R.id.RecyclerViewHorarios);
+        buttonLogout = findViewById(R.id.ButtonLogout);
 
         calendar = Calendar.getInstance();
         dayWeek = calendar.get(Calendar.DAY_OF_WEEK);
