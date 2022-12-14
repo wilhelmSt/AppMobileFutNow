@@ -67,7 +67,22 @@ public class QuadraAgendaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnItemTouchListener(new RecyclerItem);
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                Toast.makeText(QuadraAgendaActivity.this, "Recall", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
