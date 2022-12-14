@@ -30,7 +30,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class QuadraAgendaActivity extends AppCompatActivity {
+public class QuadraAgendaActivity extends AppCompatActivity implements CustomAdapterHorarios.Onclick {
 
     Calendar calendar;
     int dayWeek;
@@ -63,7 +63,7 @@ public class QuadraAgendaActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.RecyclerViewHorarios);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
-        adapter = new CustomAdapterHorarios(horarios);
+        adapter = new CustomAdapterHorarios(horarios, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
         recyclerView.setAdapter(adapter);
@@ -157,4 +157,9 @@ public class QuadraAgendaActivity extends AppCompatActivity {
         super.onStart();
     }
 
+
+    @Override
+    public void onClickListener(String hora) {
+
+    }
 }

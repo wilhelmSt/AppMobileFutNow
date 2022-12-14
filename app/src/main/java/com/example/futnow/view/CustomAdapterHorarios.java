@@ -9,15 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.futnow.R;
 import com.example.futnow.model.Horario;
+import com.example.futnow.model.Quadra;
 
 import java.util.List;
 
 public class CustomAdapterHorarios extends RecyclerView.Adapter<CustomAdapterHorarios.ViewHolder> {
 
     private List<String> localDataSet;
+    private Onclick onclick;
 
-    public CustomAdapterHorarios(List<String> dataSet) {
+    public CustomAdapterHorarios(List<String> dataSet, Onclick onclick) {
         this.localDataSet = dataSet;
+        this.onclick = onclick;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,8 +49,15 @@ public class CustomAdapterHorarios extends RecyclerView.Adapter<CustomAdapterHor
 
         viewHolder.buttonText.setText(hora);
 
+        viewHolder.itemView.setOnClickListener(view -> {
+            onclick.onClickListener(hora);
+        });
+
     }
 
+    public interface Onclick {
+        public void onClickListener(String hora);
+    }
 
     @Override
     public int getItemCount() {
