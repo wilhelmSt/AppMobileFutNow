@@ -14,22 +14,22 @@ public class Horario {
     HashMap<String, Boolean> horarios = new HashMap<String, Boolean>();
 
     public Horario() {
-        horarios.put("07:00 AM", false);
-        horarios.put("08:00 AM", false);
-        horarios.put("09:00 AM", false);
-        horarios.put("10:00 AM", false);
-        horarios.put("11:00 AM", false);
-        horarios.put("12:00 PM", false);
-        horarios.put("13:00 PM", false);
-        horarios.put("14:00 PM", false);
-        horarios.put("15:00 PM", false);
-        horarios.put("16:00 PM", false);
-        horarios.put("17:00 PM", false);
-        horarios.put("18:00 PM", false);
-        horarios.put("19:00 PM", false);
-        horarios.put("20:00 PM", false);
-        horarios.put("21:00 PM", false);
-        horarios.put("22:00 PM", false);
+        this.horarios.put("07:00 AM", false);
+        this.horarios.put("08:00 AM", false);
+        this.horarios.put("09:00 AM", false);
+        this.horarios.put("10:00 AM", false);
+        this.horarios.put("11:00 AM", false);
+        this.horarios.put("12:00 PM", false);
+        this.horarios.put("13:00 PM", false);
+        this.horarios.put("14:00 PM", false);
+        this.horarios.put("15:00 PM", false);
+        this.horarios.put("16:00 PM", false);
+        this.horarios.put("17:00 PM", false);
+        this.horarios.put("18:00 PM", false);
+        this.horarios.put("19:00 PM", false);
+        this.horarios.put("20:00 PM", false);
+        this.horarios.put("21:00 PM", false);
+        this.horarios.put("22:00 PM", false);
 
     }
 

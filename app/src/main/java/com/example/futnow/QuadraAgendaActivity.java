@@ -42,12 +42,14 @@ public class QuadraAgendaActivity extends AppCompatActivity {
     Bundle bundle;
 
     private Horario horario;
-    private List<Horario> horarios = new ArrayList<>();
+    private List<String> horarios = new ArrayList<>();
     private CustomAdapterHorarios adapter;
     RecyclerView recyclerView;
 
     Button buttonLogout;
     FirebaseAuth auth = FirebaseAuth.getInstance();
+
+    HashMap<String, Boolean> horariosMap = new HashMap<String, Boolean>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,22 +67,7 @@ public class QuadraAgendaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                Toast.makeText(QuadraAgendaActivity.this, "Recall", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
+        recyclerView.addOnItemTouchListener(new RecyclerItem);
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +101,29 @@ public class QuadraAgendaActivity extends AppCompatActivity {
             bundle = getIntent().getExtras();
             System.out.println(bundle);
         }
+
+        this.horariosMap.put("07:00 AM", false);
+        this.horariosMap.put("08:00 AM", false);
+        this.horariosMap.put("09:00 AM", false);
+        this.horariosMap.put("10:00 AM", false);
+        this.horariosMap.put("11:00 AM", false);
+        this.horariosMap.put("12:00 PM", false);
+        this.horariosMap.put("13:00 PM", false);
+        this.horariosMap.put("14:00 PM", false);
+        this.horariosMap.put("15:00 PM", false);
+        this.horariosMap.put("16:00 PM", false);
+        this.horariosMap.put("17:00 PM", false);
+        this.horariosMap.put("18:00 PM", false);
+        this.horariosMap.put("19:00 PM", false);
+        this.horariosMap.put("20:00 PM", false);
+        this.horariosMap.put("21:00 PM", false);
+        this.horariosMap.put("22:00 PM", false);
+
+        for (String i : horariosMap.keySet()) {
+            horarios.add(i);
+        }
+
+        System.out.println("horarios: " + horarios);
     }
 
     @SuppressLint("SetTextI18n")
@@ -130,36 +140,6 @@ public class QuadraAgendaActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        System.out.println("idQuadra: " + idQuadra);
-        recuperaHorarios();
     }
 
-    private void recuperaHorarios() {
-        DatabaseReference databaseReference = FirebaseHelper.getDatabaseReference()
-                .child("quadras")
-                .child(FirebaseHelper.getIdFirebase())
-                .child(idQuadra)
-                .child("horarios");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                horarios.clear();
-                if (snapshot.exists()) {
-                    for (DataSnapshot snap : snapshot.getChildren()) {
-                        horario = snap.getValue(Horario.class);
-                        horarios.add(horario);
-                    }
-                }
-                Collections.reverse(horarios);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
 }

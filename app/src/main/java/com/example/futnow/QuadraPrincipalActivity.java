@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
+import java.util.Objects;
 
 public class QuadraPrincipalActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
     TextView arenaDescricao;
     TextView arenaCidade;
     TextView arenaEndereco;
+    Button buttonUpdate;
     Button buttonVerComentarios;
     Button buttonVerAgenda;
     Button buttonMapa;
@@ -44,6 +46,8 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
         Constructor();
 
         recuperarId();
+
+
 
         buttonMapa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +87,15 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( QuadraPrincipalActivity.this, QuadraUpdateActivity.class);
+                intent.putExtra("idQuadra", quadra.getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void Constructor() {
@@ -96,9 +109,15 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
         buttonVerAgenda = findViewById(R.id.ButtonVerAgenda);
         buttonMapa = findViewById(R.id.ButtonMapa);
         buttonLogout = findViewById(R.id.ButtonLogout);
+
+        buttonUpdate = findViewById(R.id.textViewQuadraUpdate);
     }
 
     public void configDados(Quadra quadra) {
+        if(quadra == null) {
+            Intent intent = new Intent(QuadraPrincipalActivity.this, FutnowHomepage.class);
+            startActivity(intent);
+        }
         arenaTitle.setText(quadra.getTitle());
         arenaCidade.setText(quadra.getCidade());
         arenaDescricao.setText(quadra.getDescricao());
@@ -116,13 +135,21 @@ public class QuadraPrincipalActivity extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseHelper.getDatabaseReference()
                 .child("quadras")
-                .child(FirebaseHelper.getIdFirebase())
                 .child(id);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 quadra = snapshot.getValue(Quadra.class);
+                if(quadra == null) {
+                    Intent intent = new Intent(QuadraPrincipalActivity.this, FutnowHomepage.class);
+                    startActivity(intent);
+                }
                 configDados(quadra);
+
+                if (!quadra.getIdUser().equals(auth.getUid())) {
+                    buttonUpdate.setVisibility(View.GONE);
+                }
             }
 
             @Override

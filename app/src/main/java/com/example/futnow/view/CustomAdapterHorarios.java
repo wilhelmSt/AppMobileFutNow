@@ -14,9 +14,9 @@ import java.util.List;
 
 public class CustomAdapterHorarios extends RecyclerView.Adapter<CustomAdapterHorarios.ViewHolder> {
 
-    private List<Horario> localDataSet;
+    private List<String> localDataSet;
 
-    public CustomAdapterHorarios(List<Horario> dataSet) {
+    public CustomAdapterHorarios(List<String> dataSet) {
         this.localDataSet = dataSet;
     }
 
@@ -42,10 +42,9 @@ public class CustomAdapterHorarios extends RecyclerView.Adapter<CustomAdapterHor
     @Override
     public void onBindViewHolder(CustomAdapterHorarios.ViewHolder viewHolder, final int position) {
 
-        Horario horario = localDataSet.get( position );
+        String hora = localDataSet.get( position );
 
-        viewHolder.buttonText.setText("Mudou");
-
+        viewHolder.buttonText.setText(hora);
 
     }
 

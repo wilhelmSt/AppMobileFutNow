@@ -125,7 +125,6 @@ public class Quadra {
     public void salvar() {
         DatabaseReference reference = FirebaseHelper.getDatabaseReference()
                 .child("quadras")
-                .child(FirebaseHelper.getIdFirebase())
                 .child(this.getId());
         reference.setValue(this);
     }

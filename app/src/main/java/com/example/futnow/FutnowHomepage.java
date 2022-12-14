@@ -98,8 +98,7 @@ public class FutnowHomepage extends AppCompatActivity implements CustomAdapterQu
 
     private void recuperaQuadras() {
         DatabaseReference databaseReference = FirebaseHelper.getDatabaseReference()
-                .child("quadras")
-                .child(FirebaseHelper.getIdFirebase());
+                .child("quadras");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
