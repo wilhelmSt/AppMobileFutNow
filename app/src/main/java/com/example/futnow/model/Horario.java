@@ -13,6 +13,7 @@ public class Horario {
     String title, descricao;
     HashMap<String, Boolean> horarios = new HashMap<String, Boolean>();
 
+
     public Horario() {
         this.horarios.put("07:00 AM", false);
         this.horarios.put("08:00 AM", false);
@@ -30,6 +31,7 @@ public class Horario {
         this.horarios.put("20:00 PM", false);
         this.horarios.put("21:00 PM", false);
         this.horarios.put("22:00 PM", false);
+
 
     }
 

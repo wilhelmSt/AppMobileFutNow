@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Quadra {
@@ -24,6 +25,7 @@ public class Quadra {
     Horario horario;
 
     HashMap<String, Boolean> horarios = new HashMap<String, Boolean>();
+    ArrayList<Horario> horariosList = new ArrayList<Horario>();
 
 //    private FirebaseAuth auth = FirebaseAuth.getInstance();
 
